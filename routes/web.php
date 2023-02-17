@@ -63,3 +63,19 @@ Route::get('read', function () {
         echo 'video    ' . $tag->name;
     }
 });
+
+
+// update
+
+Route::get('update', function () {
+    $post = Post::findOrFail(1);
+    $video = Video::findOrFail(1);
+
+    foreach ($post->tags as $tag) {
+        $tag->whereName('tag 1')->update(['name'=>'TAG-1']);
+    }
+
+    foreach ($video->tags as $tag) {
+        $tag->whereName('tag 2')->update(['name' => 'TAG-2']);
+    }
+});
