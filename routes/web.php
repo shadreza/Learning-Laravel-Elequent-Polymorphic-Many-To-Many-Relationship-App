@@ -78,4 +78,16 @@ Route::get('update', function () {
     foreach ($video->tags as $tag) {
         $tag->whereName('tag 2')->update(['name' => 'TAG-2']);
     }
+
+    $tag = Tag::findOrFail(2);
+
+    // $post->tags()->save($tag);
+    // $post->tags()->attach($tag);
+
+    // sync basically only keeps the tags that are passed by the array
+    // so if the post was having multiple tags like 1, 2, 4, ...
+    // but after the following piece of code the tag will be only 1
+    $post->tags()->sync([1]);
+
+
 });
