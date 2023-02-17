@@ -43,3 +43,23 @@ Route::get('create', function () {
     $tag = Tag::findOrFail(2);
     $video->tags()->save($tag);
 });
+
+
+// read
+
+Route::get('read', function () {
+    $post = Post::findOrFail(1);
+    $video = Video::findOrFail(1);
+
+    foreach ($post->tags as $tag) {
+        echo 'post    ' . $tag->name;
+    }
+
+    echo '<br>';
+    echo '<br>';
+    echo '<br>';
+
+    foreach ($video->tags as $tag) {
+        echo 'video    ' . $tag->name;
+    }
+});
