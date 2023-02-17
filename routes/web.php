@@ -72,7 +72,7 @@ Route::get('update', function () {
     $video = Video::findOrFail(1);
 
     foreach ($post->tags as $tag) {
-        $tag->whereName('tag 1')->update(['name'=>'TAG-1']);
+        $tag->whereName('tag 1')->update(['name' => 'TAG-1']);
     }
 
     foreach ($video->tags as $tag) {
@@ -88,6 +88,18 @@ Route::get('update', function () {
     // so if the post was having multiple tags like 1, 2, 4, ...
     // but after the following piece of code the tag will be only 1
     $post->tags()->sync([1]);
+});
 
 
+
+// delete
+
+Route::get('delete', function () {
+    $post = Post::findOrFail(1);
+
+    // only deletes the tag from the tags table
+    // taggable table un changed
+    foreach ($post->tags as $tag) {
+        $tag->whereId(3)->delete();
+    }
 });
