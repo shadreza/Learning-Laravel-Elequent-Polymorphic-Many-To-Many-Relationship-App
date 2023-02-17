@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name'];
+
+    public function tags()
+    {
+        return $this->morphToMany('app\Models\Tag', 'taggable');
+    }
 }
